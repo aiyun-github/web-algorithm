@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // 防抖
+    // 把触发频繁的事件合并成一次去执行
+    const debounce = (func, wait = 50) => {
+        let timer = 0
+        return function (...args) {
+            if(timer) clearTimeout(timer)
+            timer = setTimeout(() => {
+                func.apply(this, args)
+            }, wait)
+        }
+    }
+    // 处理函数
+    function handle() {
+        console.log('防抖：', Math.random());
+    }
+
+    //点击事件
+    window.addEventListener('click', debounce(handle,500));
+
+</script>
+</body>
+</html>
